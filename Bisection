@@ -5,57 +5,57 @@ double func(double x) {
  }
 double e;
 double c;
-// bisection user defined function 
+// bisection user defined function
 void bisection(double a, double b)
  {
  if(func(a) * func(b) >= 0)
- { 	printf("Incorrect value of a and b");
+    { 	printf("Incorrect value of a and b");
  	return;
- }
- int i=1;
- double m=(a+b)/2;
- printf("\n----------------------------------------------------------------\n");
- printf("step\ta\t  f(a)\t \t  b\t\t f(b)\t  c\t\t f(c)\t  update\n");
- printf("----------------------------------------------------------------\n");
- while (fabs(func(m)) >= e)
- {
- 	 printf("%d ",i);
-	 i++;
-	 printf("\t%.4lf ",a);
-	 printf("\t%.4lf ",func(a));
-	 printf("\t%.4lf ",b);
-	 printf("\t%.4lf ",func(b));
- 
- c = (a+b)/2;
- m=c;
- if (func(c) == 0.0)
- { 	printf("\t%.4lf  ",c);
-	 printf("\t%.4lf \t", func(c));
-	 break;
- }
- else if (func(c)*func(a) < 0)
- {
- 	printf("\t%.4lf ",c);
-	 printf("\t%.5lf\t\t", func(c));
-	 b = c;
-	 printf("b=c ");
- }
- else
- {
- 	printf("\t%.4lf ",c);
-	 printf("\t%.5lf \t", func(c));
- 	a = c;
- 	printf("a=c ");
- }
- 	printf("\n");
- }
- 	printf("----------------------------------------------------------------\n");
+    }
+    int i=1;
+    double m=(a+b)/2;
+    printf("\n----------------------------------------------------------------------\n");
+    printf("step\t  a\t  f(a)\t     b\t   f(b)       c\t\tf(c)\tupdate\n");
+    printf("----------------------------------------------------------------------\n");
+    while (fabs(func(m)) >= e)
+    {
+        printf("%d ",i);
+        i++;
+        printf("\t%.4lf ",a);
+        printf("\t%.4lf ",func(a));
+        printf("  %.4lf ",b);
+        printf("  %.4lf ",func(b));
+
+        c = (a+b)/2;
+        m=c;
+        if (func(c) == 0.0)
+        { 	printf("%.4lf  ",c);
+            printf("\t%.4lf \t", func(c));
+            break;
+        }
+        else if (func(c)*func(a) < 0)
+        {
+            printf("  %.4lf ",c);
+            printf("  %.5lf\t", func(c));
+            b = c;
+            printf("b=c ");
+        }
+        else
+        {
+            printf("  %.4lf ",c);
+            printf("  %.5lf \t", func(c));
+            a = c;
+            printf("a=c");
+        }
+        printf("\n");
+    }
+ 	printf("--------------------------------------------------------------------\n");
  	printf(" \n After %d steps approximate Root is = %.5lf\n",i-1,c);
  }
 int main()
 {
- 	double a,b,i,n,fa,fb,fc;
- 	printf("Used function: 2x^3 - 2x -6 \n");
+ 	 double a,b,i,n,fa,fb,fc;
+ 	 printf("Used function: 2x^3 - 2x -6 \n");
 	 printf("Enter n to count x: ");
 	 scanf("%lf",&n);
 	 printf("\nx\tf(x)");
