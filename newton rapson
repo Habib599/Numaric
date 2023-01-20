@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+
+#define   f(x)   2*x*x*x - 2*x -6
+#define   g(x)   6*x*x-2
+
+void main()
+{
+	 float x,x0, x1, f0, f1, g0, e,a,b,i,n,fa,fb;
+	 int step = 1, N=8;
+
+	 printf("Used function: 2x^3 - 2x -6 \n");
+	 printf("Enter n to count x: ");
+	 scanf("%f",&x);
+	 printf("\nx\tf(x)");
+	 for(i=0;i<=x;i++)
+	 {
+	 	printf("\n%.0f\t%f",i,f(i));
+	 }
+   	 printf("\n\nEnter value for a: ");
+   	 scanf("%f",&a);
+   	 printf("\nEnter value for b: ");
+  	 scanf("%f",&b);
+  	 fa=f(a);
+ 	 fb=f(b);
+ 	 x0=(a+b)/2;
+   	 printf("\n\nf(a)= %f\tf(b)= %f\n\n",fa,fb);
+	 printf("Enter accurcy:  ");
+	 scanf("%f",&e);
+
+     /* Inputs */
+	 /* Implementing Newton Raphson Method */
+	 printf("\n----------------------------------------------------------------------------------------------\n");
+	 printf("Step\tx0\t\tf(x0)\t\tf'(x0)\t\tx1\t\tf(x1)\t\tupdate\n");
+	 printf("----------------------------------------------------------------------------------------------\n");
+	 do
+	 {
+		  g0 = g(x0);
+		  f0 = f(x0);
+		  if(g0 == 0.0)
+		  {
+			   printf("Mathematical Error.");
+			   exit(0);
+		  }
+
+
+		  x1 = x0 - f0/g0;
+
+              f1 = f(x1);
+		  printf("%d\t%f\t%f\t%f\t%f\t%f\t",step,x0,f0,g0,x1,f1);
+		  x0 = x1;
+		  printf("x0=x1\n");
+
+		  step = step+1;
+		  if (f(x1) == 0.0)
+            {
+                printf("%f  ",x1);
+                printf("\t%f \t", f(x1));
+                break;
+            }
+            printf("");
+	 }while(fabs(f1)>e);
+	 printf("----------------------------------------------------------------------------------------------\n");
+     printf(" \nAfter %d steps approximate Root is = %.5lf\n",step-1,x1);
+	 getch();
+}
+
