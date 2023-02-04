@@ -1,0 +1,16 @@
+#include<stdio.h>
+int main()
+{
+    float x1,y1,x2,y2,x,y;
+
+    printf("Enter first point (x1,y1):\n");
+    scanf("%f%f",&x1,&y1);
+    printf("Enter second point (x2,y2):\n");
+    scanf("%f%f",&x2,&y2);
+    printf("Enter interpolation point: ");
+    scanf("%f", &x);
+
+    y = y1 + ((y2-y1)/(x2-x1)) * (x - x1);
+    printf("\nInterpolated value at %0.3f is %0.3f\n", x, y);
+    return 0;
+}
