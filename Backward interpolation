@@ -1,0 +1,79 @@
+//Backward interpolation in C language
+
+#include<stdio.h>
+main()
+{
+
+    int i,j,n;
+    float ax[20]={15,20,25,30,35,40},x,yx;
+    float ay[20][20]={
+                {.2588190},
+                {.3420201},
+                {.4226183},
+                {.5},
+                {.5735764},
+                {.6427876}
+                };
+    printf("No of values of x and y: ");
+    scanf("%d", &n);
+
+    /*printf("Give values of x: \n");
+    for(i=0; i<n; i++)
+    {
+        printf("x%d : ",i);
+        scanf("\n%f", &ax[i]);
+    }
+
+    printf("Give values of y: \n");
+    for(i=0; i<n; i++)
+    {
+        printf("y%d : ",i);
+        scanf("\n%f", &ay[i][0]);
+    }*/
+
+    for(j=1; j<n; j++)
+    {
+        for(i=0; i<(n-j); i++)
+        {
+            ay[i][j]=  ay[i+1][j-1] - ay [i][j-1];
+        }
+    }
+
+    printf("\nBackward Difference Table: \n");
+    for(i=0; i<n; i++)
+    {
+        printf("%.0f",ax[i]);
+        for(j=0; j<(n-i); j++)
+        {
+            printf("\t%.7f",ay[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nGives value of x to interpolate: ");
+    scanf("%f", &x);
+
+    float h= ax[1]- ax[0];
+    float p= (x-ax[n-1])/h;// difference from forward
+    printf("\n p=%f", p);
+
+    float fact=1;
+    yx=ay[n-1][0];// difference from forward
+
+    float d=1;
+
+    for(j=1; j<n; j++)
+    {
+        for(i=1; i<=j; i++)
+        {
+            fact= fact*i;
+        }
+
+        d=d*(p+(j-1)); // difference from forward
+        yx=yx+(d*ay[n-(j+1)][j])/fact;  // difference from forward
+        fact=1;
+    }
+
+    printf("\nFor x=%f, output y=%f",x,yx);
+}
+
