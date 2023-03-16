@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+    double f(double x)
+    {
+        return sqrt(1+x * x);
+    }
+    int main()
+    {
+        int n,i;
+        double a,b,h,x[30],sum=0;
+
+        printf("\nEnter the value of n: ");
+        scanf("%d",&n);
+        printf("\nEnter the lower limit: ");
+        scanf("%lf",&a);
+        printf("\nEnter the upper limit: ");
+        scanf("%lf",&b);
+        h = (b-a)/n;
+        printf("\nh=%lf\n",h);
+
+        for(i=0; i<=n; i++)
+        {
+            x[i] = a + i*h;
+            printf("x[%d] = %lf\tf(x)[%d] = %lf\n", i, x[i], i, f(x[i]));
+
+            if (i == 0 || i == n)
+            {
+                sum += f(x[i]);
+            }
+            else
+            {
+                sum += 2*f(x[i]);
+            }
+        }
+        sum = (h/2)*(sum);
+        printf("\nThe approximate result is: %lf\n", sum);
+        return 0;
+}
+
